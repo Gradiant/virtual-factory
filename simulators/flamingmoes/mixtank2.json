@@ -1,0 +1,99 @@
+{
+  "simulator_connector_client": {
+    "type": "mqtt",
+    "mqtt": {
+      "host": "mosquitto",
+      "port": 1883
+    }
+  },
+  "industrial_connector_client": {
+    "type": "modbus",
+    "modbus": {
+      "host": "openplc",
+      "port": 502,
+      "slave": 1
+    }
+  },
+  "simulator_names": [
+    "mixtank2"
+  ],
+  "mixtank2": {
+    "type": "tank",
+    "inputs": [
+      "brandyvalve",
+      "ginvalve",
+      "coughsyrupvalve"
+    ],
+    "outputs": [
+      "mixtank2valve"
+    ],
+    "buggable": true,
+    "logging": {
+      "logging": true,
+      "type": "opensearch",
+      "opensearch": {
+        "host": "opensearch",
+        "port": 9200,
+        "user": "admin",
+        "password": "admin",
+        "use_ssl": false,
+        "verify_certs": false,
+        "index": "factory-log-tank2",
+        "max_size_cache": 10
+      }
+    },
+    "output_level": 3,
+    "temp": 6,
+    "max_temp": 25.0,
+    "min_temp": -10,
+    "capacity": 0,
+    "max_capacity": 100,
+    "max_pressure": 10,
+    "mapper_industry_properties": {
+      "write": {
+        "capacity": {
+          "map": 110,
+          "type": "uregister"
+        },
+        "min_capacity": {
+          "map": 111,
+          "type": "uregister"
+        },
+        "max_capacity": {
+          "map": 112,
+          "type": "uregister"
+        },
+        "max_pressure": {
+          "map": 113,
+          "type": "uregister"
+        },
+        "min_pressure": {
+          "map": 114,
+          "type": "uregister"
+        },
+        "pressure": {
+          "map": 115,
+          "type": "uregister"
+        },
+        "max_temp": {
+          "map": 116,
+          "type": "register"
+        },
+        "min_temp": {
+          "map": 117,
+          "type": "register"
+        },
+        "temp": {
+          "map": 118,
+          "type": "register"
+        }
+      },
+      "read": {
+        "heat_cool_level": {
+          "map": 119,
+          "type": "register"
+        }
+      }
+    }
+  }
+}

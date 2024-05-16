@@ -1,0 +1,68 @@
+{
+  "simulator_connector_client": {
+    "type": "mqtt",
+    "mqtt": {
+      "host": "mosquitto",
+      "port": 1883
+    }
+  },
+  "industrial_connector_client": {
+    "type": "modbus",
+    "modbus": {
+      "host": "openplc",
+      "port": 502,
+      "slave": 1
+    }
+  },
+  "simulator_names": [
+    "conveyorbelt1"
+  ],
+  "conveyorbelt1": {
+    "type": "conveyorbelt",
+    "inputs": [
+      "recolectorvalve"
+    ],
+    "buggable": true,
+    "logging": {
+      "logging": true,
+      "directory": "/home/logs/test"
+    },
+    "flowable_inputs": {
+      "recolectorvalve": {
+        "position": 4
+      }
+    },
+    "outputs": [
+      "drain"
+    ],
+    "speed": 1,
+    "slots": 7,
+    "mode": "lineal",
+    "mapper_industry_properties": {
+      "write": {
+        "onoff": {
+          "map": 819,
+          "type": "coil"
+        },
+        "availslot1": {
+          "map": 820,
+          "type": "coil"
+        },
+        "availslot2": {
+          "map": 821,
+          "type": "coil"
+        },
+        "availslot3": {
+          "map": 822,
+          "type": "coil"
+        }
+      },
+      "read": {
+        "onoff": {
+          "map": 818,
+          "type": "coil"
+        }
+      }
+    }
+  }
+}

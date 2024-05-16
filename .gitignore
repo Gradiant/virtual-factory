@@ -1,0 +1,44 @@
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore the virtual environment directory
+venv/
+
+# Ignore local configuration files
+.env
+.env.*
+
+¡
+
+# Ignore Docker build context cache
+.docker/build/
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.swp
+*.bak
+*.pyo
+*.orig
+*~
+__MACOSX/
+
+# Ignore other build artifacts
+*.egg-info/
+dist/
+build/
+*.egg
+*.egg-info
+*.pyc
+*.pyo
+
+# Ignore editor-specific files
+.idea/
+.vscode/
+*.pyc
+*.pyo
+
+# log files
+*.log
+*.csv

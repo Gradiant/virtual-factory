@@ -1,0 +1,58 @@
+{
+  "simulator_connector_client": {
+    "type": "mqtt",
+    "mqtt": {
+      "host": "mosquitto",
+      "port": 1883
+    }
+  },
+  "industrial_connector_client": {
+    "type": "modbus",
+    "modbus": {
+      "host": "openplc",
+      "port": 502,
+      "slave": 1
+    }
+  },
+  "simulator_names": [
+    "mintcreamvalve"
+  ],
+  "mintcreamvalve": {
+    "type": "valve",
+    "logging": {
+      "logging": true,
+      "type": "opensearch",
+      "opensearch": {
+        "host": "opensearch",
+        "port": 9200,
+        "user": "admin",
+        "password": "admin",
+        "use_ssl" : false,
+        "verify_certs" : false,
+        "index": "factory-log-mintcreamvalve",
+        "max_size_cache" : 10
+      }
+    },
+    "inputs": [
+      "mintcream"
+    ],
+    "outputs": [
+      "mixtank1"
+    ],
+    "output_level": 100,
+    "mapper_industry_properties": {
+      "write": {
+        "open": {
+          "map": 805,
+          "type": "coil"
+        }
+      },
+      "read": {
+        "open": {
+          "map": 804,
+          "type": "coil"
+        }
+      }
+    }
+  }
+}

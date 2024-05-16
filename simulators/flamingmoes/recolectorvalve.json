@@ -1,0 +1,58 @@
+{
+  "simulator_connector_client": {
+    "type": "mqtt",
+    "mqtt": {
+      "host": "mosquitto",
+      "port": 1883
+    }
+  },
+  "industrial_connector_client": {
+    "type": "modbus",
+    "modbus": {
+      "host": "openplc",
+      "port": 502,
+      "slave": 1
+    }
+  },
+  "simulator_names": [
+    "recolectorvalve"
+  ],
+  "recolectorvalve": {
+    "type": "valve",
+    "logging": {
+      "logging": true,
+      "type": "opensearch",
+      "opensearch": {
+        "host": "opensearch",
+        "port": 9200,
+        "user": "admin",
+        "password": "admin",
+        "use_ssl" : false,
+        "verify_certs" : false,
+        "index": "factory-log-recolectorvalve",
+        "max_size_cache" : 10
+      }
+    },
+    "inputs": [
+      "recolector"
+    ],
+    "outputs": [
+      "conveyorbelt1"
+    ],
+    "output_level": 100,
+    "mapper_industry_properties": {
+      "write": {
+        "open": {
+          "map": 817,
+          "type": "coil"
+        }
+      },
+      "read": {
+        "open": {
+          "map": 816,
+          "type": "coil"
+        }
+      }
+    }
+  }
+}

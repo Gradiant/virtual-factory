@@ -1,0 +1,26 @@
+{
+  "simulator_connector_client": {
+    "type": "mqtt",
+    "mqtt": {
+      "host": "mosquitto",
+      "port": 1883
+    }
+  },
+  "industrial_connector_client": {
+    "type": "modbus",
+    "modbus": {
+      "host": "openplc",
+      "port": 502,
+      "slave": 1
+    }
+  },
+  "simulator_names": [
+    "drain"
+  ],
+  "drain": {
+    "type": "drain",
+    "inputs": [
+      "conveyorbelt1"
+    ]
+  }
+}

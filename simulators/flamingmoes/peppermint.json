@@ -1,0 +1,27 @@
+{
+  "simulator_connector_client": {
+    "type": "mqtt",
+    "mqtt": {
+      "host": "mosquitto",
+      "port": 1883
+    }
+  },
+  "industrial_connector_client": {
+    "type": "modbus",
+    "modbus": {
+      "host": "openplc",
+      "port": 502,
+      "slave": 1
+    }
+  },
+  "simulator_names": [
+    "peppermint"
+  ],
+  "peppermint": {
+    "type": "Tap",
+    "outputs": [
+      "peppermintvalve"
+    ],
+    "output_level": 1
+  }
+}

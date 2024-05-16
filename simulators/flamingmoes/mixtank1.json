@@ -1,0 +1,96 @@
+{
+  "simulator_connector_client": {
+    "type": "mqtt",
+    "mqtt": {
+      "host": "mosquitto",
+      "port": 1883
+    }
+  },
+  "industrial_connector_client": {
+    "type": "modbus",
+    "modbus": {
+      "host": "openplc",
+      "port": 502,
+      "slave": 1
+    }
+  },
+  "simulator_names": [
+    "mixtank1"
+  ],
+  "mixtank1": {
+    "type": "tank",
+    "logging": {
+      "logging": true,
+      "type": "opensearch",
+      "opensearch": {
+        "host": "opensearch",
+        "port": 9200,
+        "user": "admin",
+        "password": "admin",
+        "use_ssl" : false,
+        "verify_certs" : false,
+        "index": "factory-log-tank1",
+        "max_size_cache" : 10
+      }
+    },
+    "inputs": [
+      "tequilavalve", "peppermintvalve", "mintcreamvalve"
+    ],
+    "outputs": [
+      "mixtank1valve"
+    ],
+    "output_level": 3,
+    "temp": 6,
+    "max_temp": 25.0,
+    "min_temp" : -10,
+    "capacity": 0,
+    "max_capacity": 100,
+    "max_pressure": 10,
+    "mapper_industry_properties": {
+      "write": {
+        "capacity": {
+          "map":100,
+          "type": "uregister"
+        },
+        "min_capacity": {
+          "map":101,
+          "type": "uregister"
+        },
+        "max_capacity": {
+          "map":102,
+          "type": "uregister"
+        },
+        "max_pressure": {
+          "map":103,
+          "type": "uregister"
+        },
+        "min_pressure": {
+          "map":104,
+          "type": "uregister"
+        },
+        "pressure": {
+          "map":105,
+          "type": "uregister"
+        },
+        "max_temp": {
+          "map":106,
+          "type": "register"
+        },
+        "min_temp": {
+          "map":107,
+          "type": "register"
+        },
+        "temp": {
+          "map":108,
+          "type": "register"
+        }
+      },
+      "read": {
+        "heat_cool_level": {
+          "map":109,
+          "type": "register"
+        }
+      }
+    }
+  }
+}

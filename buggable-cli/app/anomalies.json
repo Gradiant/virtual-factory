@@ -1,0 +1,15 @@
+{
+  "123": {
+    "id": "123",
+    "target": "mixtank2",
+    "variable": "_capacity",
+    "duration": 5,
+    "variance": 0,
+    "wander_factor": 1.2,
+    "type": "wander",
+    "value": 5,
+    "deployment_time": "2023-09-11 11:48:30",
+    "periodicity": 10,
+    "ready": true
+  }
+}

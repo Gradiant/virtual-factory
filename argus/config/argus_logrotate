@@ -1,0 +1,5 @@
+/var/log/argus/argus.csv
+{
+daily
+rotate 7
+}

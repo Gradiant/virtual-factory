@@ -1,0 +1,102 @@
+{
+  "industrial_connector_client": {
+    "type": "modbus",
+    "modbus": {
+      "host": "openplc",
+      "port": 502,
+      "slave": 1
+    }
+  },
+  "processes_names": [
+    "flamingmoes"
+  ],
+  "flamingmoes": {
+    "type": "flamingmoes",
+    "mapper_industry_properties": {
+      "write": {
+        "tequila_valve_open": {
+          "map": 800,
+          "type": "coil"
+        },
+        "peppermint_valve_open": {
+          "map": 802,
+          "type": "coil"
+        },
+        "mintcream_valve_open": {
+          "map": 804,
+          "type": "coil"
+        },
+        "brandy_valve_open": {
+          "map": 806,
+          "type": "coil"
+        },
+        "gin_valve_open": {
+          "map": 808,
+          "type": "coil"
+        },
+        "coughsyrup_valve_open": {
+          "map": 810,
+          "type": "coil"
+        },
+        "mixtank1_valve_open": {
+          "map": 812,
+          "type": "coil"
+        },
+        "mixtank2_valve_open": {
+          "map": 814,
+          "type": "coil"
+        },
+        "recolector_valve_open": {
+          "map": 816,
+          "type": "coil"
+        },
+        "mixtank1_heat_cool_level": {
+          "map":109,
+          "type": "register"
+        },
+        "mixtank2_heat_cool_level": {
+          "map":119,
+          "type": "register"
+        },
+        "recolector_heat_cool_level": {
+          "map":129,
+          "type": "register"
+        },
+        "bottleon": {
+          "map": 818,
+          "type": "coil"
+        }
+      },
+      "read": {
+        "manual_mode": {
+          "map": 1599,
+          "type": "coil"
+        },
+        "mixtank1_capacity": {
+          "map":100,
+          "type": "uregister"
+        },
+        "mixtank1_temp": {
+          "map":108,
+          "type": "register"
+        },
+        "mixtank2_capacity": {
+          "map":110,
+          "type": "uregister"
+        },
+        "mixtank2_temp": {
+          "map":118,
+          "type": "register"
+        },
+        "recolector_capacity": {
+          "map":120,
+          "type": "uregister"
+        },
+        "recolector_temp": {
+          "map":128,
+          "type": "register"
+        }
+      }
+    }
+  }
+}

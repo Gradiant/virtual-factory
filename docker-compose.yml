@@ -1,0 +1,404 @@
+version: '3.3'
+
+services:
+  hmi:
+    build: ./FUXA-HMI
+    ports:
+        - '1881:1881'
+    volumes:
+      - ./simulators/flamingmoes/fuxa:/usr/src/app/FUXA/config
+    entrypoint:
+      - bash
+      - entrypoint.sh
+    networks:
+        - ot
+
+  openplc:
+    build: ./OpenPLC/
+    ports:
+      - "502:502"
+      - "8080:8080"
+    volumes:
+      - ./simulators/flamingmoes/openplc:/OpenPLC_v3/scripts/
+    entrypoint:
+      - bash
+      - entrypoint.sh
+    networks:
+      - ot
+
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - '1883:1883'
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - simulators
+
+  tequila:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/tequila.json
+    networks:
+      - ot
+      - simulators
+
+  tequilavalve:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/tequilavalve.json
+    networks:
+      - ot
+      - simulators
+
+  peppermint:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/peppermint.json
+    networks:
+      - ot
+      - simulators
+
+  peppermintvalve:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/peppermintvalve.json
+    networks:
+      - ot
+      - simulators
+
+  mintcream:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/mintcream.json
+    networks:
+      - ot
+      - simulators
+
+  mintcreamvalve:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/mintcreamvalve.json
+    networks:
+      - ot
+      - simulators
+
+  brandy:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/brandy.json
+    networks:
+      - ot
+      - simulators
+
+  brandyvalve:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/brandyvalve.json
+    networks:
+      - ot
+      - simulators
+
+  gin:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/gin.json
+    networks:
+      - ot
+      - simulators
+
+  ginvalve:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/ginvalve.json
+    networks:
+      - ot
+      - simulators
+
+  coughsyrup:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/coughsyrup.json
+    networks:
+      - ot
+      - simulators
+
+  coughsyrupvalve:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/coughsyrupvalve.json
+    networks:
+      - ot
+      - simulators
+
+  mixtank1:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/mixtank1.json
+    networks:
+      - ot
+      - simulators
+
+  mixtank1valve:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+      - ./simulation_logs/:/home/logs
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/mixtank1valve.json
+    networks:
+      - ot
+      - simulators
+
+  mixtank2:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+      - ./simulation_logs/:/home/logs
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/mixtank2.json
+    networks:
+      - ot
+      - simulators
+
+  mixtank2valve:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/mixtank2valve.json
+    networks:
+      - ot
+      - simulators
+
+  recolector:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/recolector.json
+    networks:
+      - ot
+      - simulators
+
+  recolectorvalve:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/recolectorvalve.json
+    networks:
+      - ot
+      - simulators
+
+  drain:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/drain.json
+    networks:
+      - ot
+      - simulators
+
+  conveyorbelt:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+      - ./simulation_logs/:/home/logs/test
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/conveyorbelt1.json
+    networks:
+      - ot
+      - simulators
+
+  buggable-cli:
+    image: python:3.9-slim
+    volumes:
+      - ./buggable-cli/app:/usr/src/app
+    working_dir: /usr/src/app
+    environment:
+    - MQTT_BROKER=mosquitto
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - anomalies.json
+    networks:
+      - simulators
+
+  docker-stats-logger:
+    build: ./docker-stats-logger
+    volumes:
+      - ./docker-stats-logger/logs:/usr/src/app/stats_logs/
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - DOCKER_PROJECT=syp-poc-fabrica-virtual
+      - LOGGING_ONE_SHOT=f
+      - LOGGING_WAIT=15
+      - LOGGING_EXCLUDE=syp-poc-fabrica-virtual_docker-stats-logger_1
+
+  flamingmoesprocess:
+    image: python:3.9-slim
+    volumes:
+      - ./simulators:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+      - flamingmoes/flamingmoesprocess.json
+    networks:
+      - ot
+      - simulators
+      
+      
+  opensearch:
+    image: opensearchproject/opensearch:1.3.1
+    env_file:
+        - opensearch/opensearch.env
+    volumes:
+        - ./data:/usr/share/opensearch/data
+    ports:
+        - 9200:9200/tcp
+        - 9300:9300/tcp
+    networks:
+        - simulators
+            
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:1.3.1
+    ports:
+        - 5601:5601
+    env_file:
+        - opensearch/opensearchdashboards.env
+    networks:
+        - simulators
+
+#  argus:
+#    build: argus
+#    network_mode: "host"
+#    entrypoint:
+#      - bash
+#      - start.sh
+#    environment:
+#      - RUN_MODE=sniff
+#      - ARGUS_OUTPUT=/traffic/argus.csv
+#      - INTERFACE=br_ot_network
+#    cap_add:
+#      - NET_RAW
+#      - NET_ADMIN
+#    volumes:
+#      - ./argus/start.sh:/start.sh
+#      - ./argus/log/:/var/log/argus/
+#      - ./extracted_data:/traffic
+#
+#  tcpdump:
+#    build: ./tcpdump
+#    container_name: tcpdump
+#    network_mode: "host"
+#    environment:
+#      - RUN_MODE=sniff
+#      - TCPDUMP_OUTPUT=/traffic/output.pcap
+#      - INTERFACE=br_ot_network
+#    cap_add:
+#      - NET_RAW
+#      - NET_ADMIN
+#    entrypoint:
+#      - bash
+#      - entrypoint.sh
+#    volumes:
+#      - ./tcpdump/entrypoint.sh:/entrypoint.sh
+#      - ./extracted_data:/traffic
+
+
+networks:
+  ot:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br_ot_network
+  simulators:
+    driver: bridge
